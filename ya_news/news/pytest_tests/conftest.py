@@ -2,7 +2,9 @@ from datetime import datetime, timedelta
 
 import pytest
 from django.conf import settings
+from django.test import Client
 from django.utils import timezone
+
 from news.models import News, Comment
 
 
@@ -12,7 +14,8 @@ def author(django_user_model):
 
 
 @pytest.fixture
-def author_client(author, client):
+def author_client(author):
+    client = Client()
     client.force_login(author)
     return client
 
@@ -28,7 +31,7 @@ def news():
 
 @pytest.fixture
 def pk_from_news(news):
-    return news.pk,
+    return (news.pk,)
 
 
 @pytest.fixture
@@ -43,7 +46,7 @@ def comment(author, news):
 
 @pytest.fixture
 def pk_from_comment(comment):
-    return comment.pk,
+    return (comment.pk,)
 
 
 @pytest.fixture

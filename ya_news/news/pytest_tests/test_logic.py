@@ -3,7 +3,6 @@ from random import choice
 
 import pytest
 from pytest_django.asserts import assertRedirects, assertFormError
-
 from django.urls import reverse
 
 from news.forms import BAD_WORDS, WARNING
